@@ -3,4 +3,5 @@
     <string name="repolist_label">Repolist</string>
     <string name="repo_details_label">RepoDetails</string>
     <string name="search">Search</string>
+    <string name="repositiories">Repositories</string>
 </resources>

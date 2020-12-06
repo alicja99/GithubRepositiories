@@ -83,7 +83,7 @@
         tools:text="Number of Stars (234)" />
 
     <LinearLayout
-        android:id="@+id/go_back_layout"
+        android:id="@+id/go_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_small"
@@ -94,7 +94,7 @@
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
-            android:id="@+id/go_back_button"
+            android:id="@+id/go_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/go_back_button"

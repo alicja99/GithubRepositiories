@@ -4,16 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
-import com.coddeaddict.githubrepositories.model.repositoryItems.RepositoryItem
-import com.coddeaddict.githubrepositories.ui.repolist.adapter.viewholder.base.BaseViewHolder
-import com.coddeaddict.githubrepositories.viewmodel.repolist.RepoListViewModel
-import org.koin.core.component.KoinApiExtension
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.coddeaddict.githubrepositories.R
+import com.coddeaddict.githubrepositories.model.repositoryItems.RepositoryItem
+import com.coddeaddict.githubrepositories.ui.repolist.adapter.viewholder.base.BaseViewHolder
 import com.coddeaddict.githubrepositories.ui.repolist.adapter.viewholder.footer.FooterViewHolder
+import com.coddeaddict.githubrepositories.viewmodel.repolist.RepoListViewModel
 import kotlinx.android.synthetic.main.repo_item.view.*
+import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
 class RepoListAdapter(viewModel: RepoListViewModel, fragment: Fragment) :

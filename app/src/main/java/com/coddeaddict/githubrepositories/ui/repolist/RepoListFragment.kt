@@ -114,8 +114,9 @@ class RepoListFragment : Fragment() {
                     showEmptyResults()
                 }
                 UIState.INITIALIZED -> {
-                    hideProgressBar()
+                    showSearchRepositoriesTextLabel()
                 }
+
                 else -> {
 
                 }
@@ -124,7 +125,6 @@ class RepoListFragment : Fragment() {
     }
 
     private fun setUpAdapter() {
-
         viewModel.let { viewModel ->
             adapter = RepoListAdapter(viewModel, this)
             binding.repositoriesRecyclerview.adapter = adapter
@@ -138,7 +138,6 @@ class RepoListFragment : Fragment() {
                 bundle
             )
         }
-
     }
 
 
@@ -157,10 +156,9 @@ class RepoListFragment : Fragment() {
     private fun showOnError() {
         binding.repositoriesRecyclerview.visibility = View.GONE
         binding.resultsTextView.visibility = View.VISIBLE
-        binding.resultsTextView.text = R.string.error.toString()
+        binding.resultsTextView.text = resources.getString(R.string.error)
         binding.progressBar.visibility = View.GONE
     }
-
 
     private fun hideProgressBar() {
         binding.repositoriesRecyclerview.visibility = View.VISIBLE
@@ -168,4 +166,10 @@ class RepoListFragment : Fragment() {
         binding.progressBar.visibility = View.GONE
     }
 
+    private fun showSearchRepositoriesTextLabel(){
+        binding.repositoriesRecyclerview.visibility = View.GONE
+        binding.resultsTextView.text = resources.getString(R.string.query_repositories)
+        binding.resultsTextView.visibility = View.VISIBLE
+        binding.progressBar.visibility = View.GONE
+    }
 }

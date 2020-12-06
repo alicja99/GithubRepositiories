@@ -1,6 +1,6 @@
 package com.coddeaddict.githubrepositories.model
 
-data class Item(
+data class RepositoryItem(
     val archive_url: String,
     val archived: Boolean,
     val assignees_url: String,

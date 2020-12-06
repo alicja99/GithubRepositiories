@@ -6,4 +6,5 @@
     <string name="repositiories">Repositories</string>
     <string name="repositoryImage">repository_image</string>
     <string name="starIcon">star_icon</string>
+    <string name="repo_by">REPO BY</string>
 </resources>

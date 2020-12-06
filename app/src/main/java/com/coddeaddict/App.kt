@@ -1,8 +1,8 @@
 package com.coddeaddict
 
 import android.app.Application
-import com.coddeaddict.githubrepositories.repository.koin.module.repoListViewModelModule
 import com.coddeaddict.githubrepositories.repository.koin.module.repositoryModule
+import com.coddeaddict.githubrepositories.repository.koin.module.viewModelModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import retrofitModule
@@ -20,5 +20,5 @@ class App : Application() {
         }
     }
 
-    private val moduleList = listOf(repositoryModule, retrofitModule, repoListViewModelModule)
+    private val moduleList = listOf(repositoryModule, retrofitModule) + viewModelModules
 }

@@ -7,12 +7,13 @@
     <string name="repositoryImage">repository_image</string>
     <string name="starIcon">star_icon</string>
     <string name="repo_by">REPO BY</string>
-    <string name="go_back">Go Back</string>
+    <string name="go_back">Back</string>
     <string name="go_back_button">Go back button</string>
     <string name="view_online">VIEW ONLINE</string>
     <string name="commits_history">Commits History</string>
     <string name="share_repo">Share Repo</string>
     <string name="share_image">Share Image</string>
-    <string name="error">Some Error Occured</string>
+    <string name="error">Some Error Occurred</string>
     <string name="no_results">No results</string>
+    <string name="number_of_stars">Number of stars (%1$d)</string>
 </resources>

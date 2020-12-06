@@ -44,12 +44,29 @@
         android:layout_height="0dp"
         android:layout_marginTop="18dp"
         android:scrollbars="none"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/repositories_text"
         tools:listitem="@layout/repo_item" />
+
+
+    <TextView
+        android:id="@+id/results_textView"
+        style="@style/commitAuthorStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:gravity="center_horizontal"
+        android:text="@string/no_results"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repositories_text" />
 
     <ProgressBar
         android:id="@+id/progressBar"

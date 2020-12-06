@@ -1,8 +1,6 @@
-package com.coddeaddict.githubrepositories.model
+package com.coddeaddict.githubrepositories.model.commits
 
-import java.io.Serializable
-
-data class Owner(
+data class CommitterX(
     val avatar_url: String,
     val events_url: String,
     val followers_url: String,
@@ -21,6 +19,4 @@ data class Owner(
     val subscriptions_url: String,
     val type: String,
     val url: String
-): Serializable {
-    constructor() : this("" , "", "" ,"" ,"" ,"","" , 0, "" ,"" ,"" ,"" ,"" , false, "" ,"" ,"" ,""  )
-}
+)

@@ -22,6 +22,7 @@
 
 
         <TextView
+            android:id="@+id/commit_index"
             style="@style/numberStyle"
             android:layout_width="80dp"
             android:layout_height="82dp"
@@ -29,7 +30,6 @@
             android:background="@drawable/circle"
             android:gravity="center"
             android:shadowColor="@android:color/white"
-            android:shadowRadius="10.0"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             tools:text="1" />
@@ -38,7 +38,7 @@
 
 
     <TextView
-        android:id="@+id/repository_title"
+        android:id="@+id/commit_author_name"
         style="@style/commitAuthorStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
 
 
     <TextView
-        android:id="@+id/repository_stars"
+        android:id="@+id/commit_author_email"
         style="@style/descriptionStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,11 +60,11 @@
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/repository_image_container"
-        app:layout_constraintTop_toBottomOf="@+id/repository_title"
+        app:layout_constraintTop_toBottomOf="@+id/commit_author_name"
         tools:text="email@authorname.com" />
 
     <TextView
-        android:id="@+id/repository_description_message"
+        android:id="@+id/commit_message"
         style="@style/descriptionStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/repository_image_container"
-        app:layout_constraintTop_toBottomOf="@+id/repository_stars"
+        app:layout_constraintTop_toBottomOf="@+id/commit_author_email"
         tools:text="This is a commit message that needs to fold over to the next line." />
 
 

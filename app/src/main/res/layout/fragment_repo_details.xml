@@ -22,11 +22,11 @@
 
     <ImageView
         android:id="@+id/repository_image_details"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/repositoryImage"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/guideline_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -79,8 +79,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginBottom="22dp"
-        android:textAlignment="textStart"
         android:text="@string/number_of_stars"
+        android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="@+id/repository_image_details"
         app:layout_constraintStart_toEndOf="@+id/star_icon_details"
         tools:text="Number of Stars (234)" />
@@ -106,9 +106,9 @@
         <TextView
             android:id="@+id/go_back_label"
             style="@style/whiteDescriptionStyle"
-            android:layout_marginLeft="@dimen/margin_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
             android:text="@string/go_back" />
     </LinearLayout>
 
@@ -151,6 +151,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="24dp"
         android:scrollbars="none"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/share_repo_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
@@ -183,8 +184,8 @@
             android:src="@drawable/share_icon" />
 
         <TextView
-            style="@style/descriptionHeaderStyle"
             android:id="@+id/share_repo_textlabel"
+            style="@style/descriptionHeaderStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -193,17 +194,34 @@
             android:textColor="@color/colorAccent" />
     </LinearLayout>
 
+
+    <TextView
+        android:id="@+id/results_textView"
+        style="@style/commitAuthorStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:gravity="center_horizontal"
+        android:text="@string/no_results"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/commits_history_label" />
+
     <ProgressBar
         android:id="@+id/progressbar_details"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
         android:visibility="gone"
+        android:layout_marginTop="88dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/commits_recyclerview" />
+        app:layout_constraintTop_toBottomOf="@+id/commits_history_label" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

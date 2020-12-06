@@ -2,12 +2,12 @@ package com.coddeaddict.githubrepositories.viewmodel.repolist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.coddeaddict.githubrepositories.model.RepositoryItem
+import com.coddeaddict.githubrepositories.model.repositoryItems.RepositoryItem
 import com.coddeaddict.githubrepositories.repository.api.call.GithubRepository
 import com.coddeaddict.githubrepositories.state.UIState
 import retrofit2.Call
 import retrofit2.Callback
-import com.coddeaddict.githubrepositories.model.Result
+import com.coddeaddict.githubrepositories.model.repositoryItems.Result
 import org.koin.core.component.KoinApiExtension
 
 

@@ -30,7 +30,7 @@
 
 
     <TextView
-        android:id="@+id/repository_title"
+        android:id="@+id/commit_author_name"
         style="@style/descriptionHeaderStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,18 +52,18 @@
         android:src="@drawable/star_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/repository_image_container"
-        app:layout_constraintTop_toBottomOf="@+id/repository_title"
+        app:layout_constraintTop_toBottomOf="@+id/commit_author_name"
         app:layout_constraintVertical_bias="0.288" />
 
     <TextView
-        android:id="@+id/repository_stars"
+        android:id="@+id/commit_author_email"
         style="@style/descriptionStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_xsmall"
         android:textAlignment="viewStart"
         app:layout_constraintStart_toEndOf="@+id/icon_star"
-        app:layout_constraintTop_toBottomOf="@+id/repository_title"
+        app:layout_constraintTop_toBottomOf="@+id/commit_author_name"
         tools:text="999" />
 
     <ImageView

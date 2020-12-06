@@ -4,16 +4,16 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.coddeaddict.githubrepositories.model.repositoryItems.RepositoryItem
+import com.coddeaddict.githubrepositories.model.repositoryItems.Result
 import com.coddeaddict.githubrepositories.repository.api.call.GithubRepository
 import com.coddeaddict.githubrepositories.state.UIState
+import org.koin.core.component.KoinApiExtension
 import retrofit2.Call
 import retrofit2.Callback
-import com.coddeaddict.githubrepositories.model.repositoryItems.Result
-import org.koin.core.component.KoinApiExtension
 
 
 @KoinApiExtension
-class RepoListViewModel (private val githubRepository: GithubRepository): ViewModel() {
+class RepoListViewModel(private val githubRepository: GithubRepository) : ViewModel() {
     private val startPageNumber = 1
 
     var isDataLoading: Boolean = false
@@ -23,8 +23,8 @@ class RepoListViewModel (private val githubRepository: GithubRepository): ViewMo
     var UIstateLiveData = MutableLiveData<UIState>(UIState.INITIALIZED)
 
 
-    fun getRepositories( query: String, currentPageNumber: Int) {
-        githubRepository.getAllRepositories( query, currentPageNumber)
+    fun getRepositories(query: String, currentPageNumber: Int) {
+        githubRepository.getAllRepositories(query, currentPageNumber)
             .enqueue(object : Callback<Result> {
                 override fun onResponse(
                     call: Call<Result>,
@@ -46,20 +46,20 @@ class RepoListViewModel (private val githubRepository: GithubRepository): ViewMo
                 }
 
                 override fun onFailure(call: Call<Result>, t: Throwable) {
-                   repositoriesLiveData.postValue(null)
+                    repositoriesLiveData.postValue(null)
                     UIstateLiveData.postValue(UIState.ON_ERROR)
                 }
             })
         Log.d("page", pageNumber.toString())
     }
 
-    private fun incrementPageNumberByOne(){
-        pageNumber+=1
+    private fun incrementPageNumberByOne() {
+        pageNumber += 1
     }
 
     fun updateRepositoriesList(newRepositoryList: List<RepositoryItem>?) {
         newRepositoryList?.let { movies ->
-           repositoriesLiveData.value?.let { currentMovieList ->
+            repositoriesLiveData.value?.let { currentMovieList ->
                 val updatedMovieList = ArrayList(currentMovieList)
                 updatedMovieList.addAll(movies)
                 repositoriesLiveData.postValue(updatedMovieList)
@@ -72,7 +72,12 @@ class RepoListViewModel (private val githubRepository: GithubRepository): ViewMo
     }
 
     fun onSearchQueryChanged(query: String) {
+        if (query.isEmpty()) {
+            UIstateLiveData.postValue(UIState.INITIALIZED)
+        } else {
             repositoriesLiveData.postValue(listOf())
-            getRepositories( query, 0)
+            getRepositories(query, 0)
+        }
+
     }
 }

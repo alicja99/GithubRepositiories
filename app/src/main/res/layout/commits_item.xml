@@ -6,31 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/margin_medium"
-    android:background="@drawable/rounded_box"
-    android:padding="@dimen/margin_medium">
+    android:background="@drawable/white_rounded_box"
+    android:padding="@dimen/margin_small">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/repository_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/circle"
         android:elevation="10dp"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/repositoryImage"
-            android:scaleType="fitXY"
-            tools:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            style="@style/numberStyle"
+            android:layout_width="80dp"
+            android:layout_height="82dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle"
+            android:gravity="center"
+            android:shadowColor="@android:color/white"
+            android:shadowRadius="10.0"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            tools:text="1" />
+
     </androidx.cardview.widget.CardView>
 
 
     <TextView
         android:id="@+id/repository_title"
-        style="@style/descriptionHeaderStyle"
+        style="@style/commitAuthorStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -38,41 +47,36 @@
         android:textAlignment="viewStart"
         app:layout_constraintStart_toEndOf="@+id/repository_image"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Title" />
+        tools:text="COMMIT AUTHOR NAME" />
 
-    <ImageView
-        android:id="@+id/icon_star"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_medium"
-        android:layout_marginTop="@dimen/margin_xsmall"
-        android:layout_marginBottom="@dimen/margin_large"
-        android:contentDescription="@string/starIcon"
-        android:src="@drawable/star_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/repository_image"
-        app:layout_constraintTop_toBottomOf="@+id/repository_title"
-        app:layout_constraintVertical_bias="0.288" />
 
     <TextView
         android:id="@+id/repository_stars"
         style="@style/descriptionStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_xsmall"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
         android:textAlignment="viewStart"
-        app:layout_constraintStart_toEndOf="@+id/icon_star"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/repository_image"
         app:layout_constraintTop_toBottomOf="@+id/repository_title"
-        tools:text="999" />
+        tools:text="email@authorname.com" />
 
-    <ImageView
-        android:id="@+id/move_to_details_page_button"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/repository_description_message"
+        style="@style/descriptionStyle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_medium"
-        android:src="@drawable/forward_icon"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/repository_image"
+        app:layout_constraintTop_toBottomOf="@+id/repository_stars"
+        tools:text="This is a commit message that needs to fold over to the next line." />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

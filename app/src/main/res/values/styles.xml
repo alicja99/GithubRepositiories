@@ -15,6 +15,10 @@
         <item name="android:letterSpacing">0.06</item>
     </style>
 
+    <style name="headerWhiteStyle" parent="headerSearchStyle">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
     <style name="smallHeaderStyle">
         <item name="fontFamily">@font/sfprodisplay_bold</item>
         <item name="android:textSize">22sp</item>
@@ -38,11 +42,31 @@
         <item name="android:letterSpacing">0.02</item>
     </style>
 
+    <style name="numberStyle" parent="descriptionHeaderStyle">
+        <item name="fontFamily">@font/sfprotext_medium</item>
+    </style>
+
     <style name="descriptionStyle">
         <item name="fontFamily">@font/sfprotext_regular</item>
         <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/gray</item>
         <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <style name="whiteDescriptionStyle" parent="descriptionStyle">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+    <style name="descriptionSmallStyle" parent="descriptionStyle">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="descriptionXSmallStyle" parent="descriptionStyle">
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="commitAuthorStyle" parent ="descriptionHeaderStyle">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">11sp</item>
     </style>
 
 </resources>

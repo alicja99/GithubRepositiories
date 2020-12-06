@@ -1,13 +1,10 @@
 package com.coddeaddict.githubrepositories.ui.repolist
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -18,9 +15,8 @@ import com.coddeaddict.githubrepositories.databinding.FragmentRepoListBinding
 import com.coddeaddict.githubrepositories.state.UIState
 import com.coddeaddict.githubrepositories.ui.repodetails.RepoDetailsFragment.Companion.REPOSITORY_ITEM_KEY
 import com.coddeaddict.githubrepositories.ui.repolist.adapter.RepoListAdapter
-import com.coddeaddict.githubrepositories.viewmodel.RepoListViewModel
+import com.coddeaddict.githubrepositories.viewmodel.repolist.RepoListViewModel
 import com.jakewharton.rxbinding2.widget.queryTextChanges
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
 import java.util.concurrent.TimeUnit
@@ -90,7 +86,7 @@ class RepoListFragment : Fragment() {
         binding.searchview.queryTextChanges().skip(2)
             .map { it.toString() }
             .doOnNext {
-                    viewModel.UIstateLiveData.postValue(UIState.LOADING)
+                viewModel.UIstateLiveData.postValue(UIState.LOADING)
             }
             .debounce(800, TimeUnit.MILLISECONDS)
             .subscribe {
@@ -137,7 +133,10 @@ class RepoListFragment : Fragment() {
         adapter!!.onItemClick = {
             val bundle = Bundle()
             bundle.putSerializable(REPOSITORY_ITEM_KEY, it)
-            findNavController().navigate(R.id.action_repoListFragment_to_repoDetailsFragment, bundle)
+            findNavController().navigate(
+                R.id.action_repoListFragment_to_repoDetailsFragment,
+                bundle
+            )
         }
 
     }

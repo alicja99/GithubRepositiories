@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.coddeaddict.githubrepositories.model.RepositoryItem
 import com.coddeaddict.githubrepositories.ui.repolist.adapter.viewholder.base.BaseViewHolder
-import com.coddeaddict.githubrepositories.viewmodel.RepoListViewModel
+import com.coddeaddict.githubrepositories.viewmodel.repolist.RepoListViewModel
 import org.koin.core.component.KoinApiExtension
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide

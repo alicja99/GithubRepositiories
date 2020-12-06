@@ -1,4 +1,4 @@
-package com.coddeaddict.githubrepositories.viewmodel
+package com.coddeaddict.githubrepositories.viewmodel.repolist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

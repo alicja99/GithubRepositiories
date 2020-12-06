@@ -5,19 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.coddeaddict.githubrepositories.R
+import com.coddeaddict.githubrepositories.databinding.FragmentRepoListBinding
 
 
 class RepoListFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var binding: FragmentRepoListBinding
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_repo_list, container, false)
+    ): View {
+        binding = FragmentRepoListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }

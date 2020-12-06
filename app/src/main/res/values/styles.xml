@@ -7,4 +7,42 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="headerSearchStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/sfprodisplay_bold</item>
+        <item name="android:textSize">@dimen/header_size</item>
+        <item name="lineHeight">41sp</item>
+        <item name="android:letterSpacing">0.06</item>
+    </style>
+
+    <style name="smallHeaderStyle">
+        <item name="fontFamily">@font/sfprodisplay_bold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="backgroundBars">
+        <item name="android:background">@drawable/rounded_box</item>
+    </style>
+
+    <style name="searchViewStyle" parent="backgroundBars">
+        <item name="height">36dp</item>
+    </style>
+
+    <style name="descriptionHeaderStyle">
+        <item name="fontFamily">@font/sfprodisplay_semibold</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <style name="descriptionStyle">
+        <item name="fontFamily">@font/sfprotext_regular</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
 </resources>

@@ -2,4 +2,8 @@
     <string name="app_name">GithubRepositories</string>
     <string name="repolist_label">Repolist</string>
     <string name="repo_details_label">RepoDetails</string>
+    <string name="search">Search</string>
+    <string name="repositiories">Repositories</string>
+    <string name="repositoryImage">repository_image</string>
+    <string name="starIcon">star_icon</string>
 </resources>

@@ -66,9 +66,7 @@ class RepoListViewModel (private val githubRepository: GithubRepository): ViewMo
     }
 
     fun onSearchQueryChanged(query: String) {
-        repositoriesLiveData.postValue(listOf())
-        getRepositories( query, 0)
+            repositoriesLiveData.postValue(listOf())
+            getRepositories( query, 0)
     }
-
-
 }

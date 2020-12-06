@@ -12,13 +12,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="20dp" />
-
 
     <ImageView
         android:id="@+id/repository_image_details"
@@ -27,7 +27,7 @@
         android:contentDescription="@string/repositoryImage"
         app:layout_constraintBottom_toTopOf="@+id/guideline_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -39,7 +39,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
-
 
     <TextView
         android:id="@+id/repoby_label"
@@ -56,10 +55,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
+        android:contentDescription="@string/starIcon"
         android:src="@drawable/star_icon"
         app:layout_constraintBottom_toTopOf="@+id/guideline_image"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        />
+        app:layout_constraintStart_toStartOf="@+id/guideline_start" />
 
     <TextView
         android:id="@+id/repository_author_name"
@@ -82,4 +81,125 @@
         app:layout_constraintBottom_toBottomOf="@+id/repository_image_details"
         app:layout_constraintStart_toEndOf="@+id/star_icon_details"
         tools:text="Number of Stars (234)" />
+
+    <LinearLayout
+        android:id="@+id/go_back_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_large"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/go_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/go_back_button"
+            android:src="@drawable/back_icon" />
+
+        <TextView
+            android:id="@+id/go_back_label"
+            style="@style/whiteDescriptionStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/go_back" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/repo_title"
+        style="@style/smallHeaderStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toTopOf="@+id/guideline_image"
+        tools:text="Repo Title" />
+
+    <Button
+        android:id="@+id/view_online_button"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/big_rounded_box"
+        android:text="@string/view_online"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintTop_toBottomOf="@+id/repository_image_details" />
+
+    <TextView
+        android:id="@+id/commits_history_label"
+        style="@style/smallHeaderStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/commits_history"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/repo_title" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commits_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="24dp"
+        android:scrollbars="none"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/share_repo_button"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/commits_history_label"
+        tools:listitem="@layout/commits_item" />
+
+    <LinearLayout
+        android:id="@+id/share_repo_button"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/big_rounded_box"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start">
+
+        <ImageView
+            android:id="@+id/share_repo_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="5dp"
+            android:contentDescription="@string/share_image"
+            android:src="@drawable/share_icon" />
+
+        <TextView
+            style="@style/descriptionHeaderStyle"
+            android:id="@+id/share_repo_textlabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:text="@string/share_repo"
+            android:textColor="@color/colorAccent" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressbar_details"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/commits_recyclerview" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

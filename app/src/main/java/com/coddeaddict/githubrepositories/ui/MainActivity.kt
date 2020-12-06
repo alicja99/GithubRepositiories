@@ -1,11 +1,11 @@
-package com.coddeaddict.githubrepositories
+package com.coddeaddict.githubrepositories.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.coddeaddict.githubrepositories.R
 import com.coddeaddict.githubrepositories.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

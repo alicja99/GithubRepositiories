@@ -11,6 +11,10 @@ import com.coddeaddict.githubrepositories.databinding.FragmentRepoDetailsBinding
 class RepoDetailsFragment : Fragment() {
     private lateinit var binding: FragmentRepoDetailsBinding
 
+    companion object {
+        const val REPOSITORY_ITEM_KEY = "REPOSITORY_ITEM_KEY"
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }

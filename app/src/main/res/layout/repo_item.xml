@@ -10,7 +10,7 @@
     android:padding="@dimen/margin_medium">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/repository_image"
+        android:id="@+id/repository_image_container"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:elevation="10dp"
@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/author_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/repositoryImage"
@@ -36,7 +37,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:textAlignment="viewStart"
-        app:layout_constraintStart_toEndOf="@+id/repository_image"
+        app:layout_constraintStart_toEndOf="@+id/repository_image_container"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
 
@@ -50,7 +51,7 @@
         android:contentDescription="@string/starIcon"
         android:src="@drawable/star_icon"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/repository_image"
+        app:layout_constraintStart_toEndOf="@+id/repository_image_container"
         app:layout_constraintTop_toBottomOf="@+id/repository_title"
         app:layout_constraintVertical_bias="0.288" />
 

@@ -15,6 +15,7 @@ import org.koin.core.component.KoinApiExtension
 class RepoListViewModel (private val githubRepository: GithubRepository): ViewModel() {
 
     var isDataLoading: Boolean = false
+    var pageNumber: Int = 0
     var totalResults: Int = 9999
     var repositoriesLiveData = MutableLiveData<List<RepositoryItem>>(listOf())
     var UIstateLiveData = MutableLiveData<UIState>(UIState.INITIALIZED)
@@ -36,6 +37,7 @@ class RepoListViewModel (private val githubRepository: GithubRepository): ViewMo
                                 val repositoriesList = response.body()?.repositoryItems
                                 updateRepositoriesList(repositoriesList)
                                 UIstateLiveData.postValue(UIState.ON_RESULT)
+                                pageNumber+=1
                             }
                         }
                     }
@@ -54,7 +56,7 @@ class RepoListViewModel (private val githubRepository: GithubRepository): ViewMo
            repositoriesLiveData.value?.let { currentMovieList ->
                 val updatedMovieList = ArrayList(currentMovieList)
                 updatedMovieList.addAll(movies)
-               repositoriesLiveData.postValue(updatedMovieList)
+                repositoriesLiveData.postValue(updatedMovieList)
             }
         }
     }

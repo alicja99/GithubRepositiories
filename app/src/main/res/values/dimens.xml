@@ -6,4 +6,5 @@
     <dimen name="margin_smedium">12dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
     <dimen name="margin_large">24dp</dimen>
+    <dimen name="footer_spinner_height">36dp</dimen>
 </resources>

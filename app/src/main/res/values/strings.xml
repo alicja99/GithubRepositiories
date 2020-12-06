@@ -13,4 +13,6 @@
     <string name="commits_history">Commits History</string>
     <string name="share_repo">Share Repo</string>
     <string name="share_image">Share Image</string>
+    <string name="error">Some Error Occured</string>
+    <string name="no_results">No results</string>
 </resources>

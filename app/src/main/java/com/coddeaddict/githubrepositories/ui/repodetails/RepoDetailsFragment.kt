@@ -7,12 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.coddeaddict.githubrepositories.R
 import com.coddeaddict.githubrepositories.constants.Constants
 import com.coddeaddict.githubrepositories.databinding.FragmentRepoDetailsBinding
-import com.coddeaddict.githubrepositories.model.RepositoryItem
+import com.coddeaddict.githubrepositories.model.repositoryItems.RepositoryItem
+import com.coddeaddict.githubrepositories.state.UICommitsState
+import com.coddeaddict.githubrepositories.ui.repodetails.adapter.CommitsAdapter
 import com.coddeaddict.githubrepositories.viewmodel.repodetails.RepoDetailsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
@@ -26,6 +30,8 @@ class RepoDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentRepoDetailsBinding
     private lateinit var repositoryItem: RepositoryItem
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private var adapter: CommitsAdapter? = null
     private val viewModel: RepoDetailsViewModel by viewModel()
 
 
@@ -33,8 +39,16 @@ class RepoDetailsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         repositoryItem = arguments?.getSerializable(REPOSITORY_ITEM_KEY) as RepositoryItem
         setDataIntoFields(repositoryItem)
-
+        setUpRecyclerView()
+        setUpAdapter()
+        observeLiveData()
         setUpButtonsOnClick()
+        fetchCommits()
+    }
+
+    private fun fetchCommits() {
+        viewModel.UICommitsLiveData.postValue(UICommitsState.LOADING)
+        viewModel.getCommits(repositoryItem.owner.login, repositoryItem.name)
     }
 
     private fun setUpButtonsOnClick() {
@@ -96,6 +110,69 @@ class RepoDetailsFragment : Fragment() {
         Glide.with(this)
             .load(repositoryItem.owner.avatar_url)
             .into(binding.repositoryImageDetails)
+    }
+
+    private fun observeLiveData() {
+        viewModel.UICommitsLiveData.observe(viewLifecycleOwner, Observer { state ->
+            when (state) {
+
+                UICommitsState.NO_COMMITS -> {
+                    showEmptyResults()
+                }
+                UICommitsState.ON_ERROR -> {
+                    showOnError()
+                }
+                UICommitsState.ON_RESULT -> {
+                    hideProgressBar()
+                }
+                UICommitsState.LOADING -> {
+                    showProgressBar()
+                }
+
+                else -> {
+
+                }
+            }
+        })
+    }
+
+
+    private fun setUpRecyclerView() {
+        linearLayoutManager = LinearLayoutManager(activity)
+        binding.commitsRecyclerview.layoutManager = linearLayoutManager
+    }
+
+    private fun setUpAdapter() {
+        viewModel.let { viewModel ->
+            adapter = CommitsAdapter(viewModel, this)
+            binding.commitsRecyclerview.adapter = adapter
+        }
+    }
+
+    private fun showEmptyResults() {
+        binding.commitsRecyclerview.visibility = View.GONE
+        binding.resultsTextView.visibility = View.VISIBLE
+        binding.progressbarDetails.visibility = View.GONE
+    }
+
+    private fun showProgressBar() {
+        binding.commitsRecyclerview.visibility = View.GONE
+        binding.resultsTextView.visibility = View.GONE
+        binding.progressbarDetails.visibility = View.VISIBLE
+    }
+
+    private fun showOnError() {
+        binding.commitsRecyclerview.visibility = View.GONE
+        binding.resultsTextView.visibility = View.VISIBLE
+        binding.resultsTextView.text = R.string.error.toString()
+        binding.progressbarDetails.visibility = View.GONE
+    }
+
+
+    private fun hideProgressBar() {
+        binding.commitsRecyclerview.visibility = View.VISIBLE
+        binding.resultsTextView.visibility = View.GONE
+        binding.progressbarDetails.visibility = View.GONE
     }
 
 }

@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.coddeaddict.githubrepositories.model.RepositoryItem
+import com.coddeaddict.githubrepositories.model.repositoryItems.RepositoryItem
 import com.coddeaddict.githubrepositories.ui.repolist.adapter.viewholder.base.BaseViewHolder
 import com.coddeaddict.githubrepositories.viewmodel.repolist.RepoListViewModel
 import org.koin.core.component.KoinApiExtension
@@ -75,8 +75,8 @@ class RepoListAdapter(viewModel: RepoListViewModel, fragment: Fragment) :
                 Glide.with(context)
                     .load(item.owner.avatar_url)
                     .into(author_image)
-                repository_title.text = item.name
-                repository_stars.text = item.stargazers_count.toString()
+                commit_author_name.text = item.name
+                commit_author_email.text = item.stargazers_count.toString()
             }
         }
     }

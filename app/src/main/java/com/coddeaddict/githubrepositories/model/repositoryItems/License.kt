@@ -1,4 +1,4 @@
-package com.coddeaddict.githubrepositories.model
+package com.coddeaddict.githubrepositories.model.repositoryItems
 import java.io.Serializable
 
 data class License(

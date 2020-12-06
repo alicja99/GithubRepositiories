@@ -16,6 +16,7 @@ import org.koin.core.component.KoinApiExtension
 class CommitsAdapter(viewModel: RepoDetailsViewModel, fragment: RepoDetailsFragment) :
     RecyclerView.Adapter<CommitsAdapter.CommitViewAdapter>() {
     private var commits = ArrayList<CommitsItem?>()
+    private val MAX_ITEMS_AMOUNT = 3
 
     init {
         viewModel.commitsLiveData.observe(fragment.viewLifecycleOwner, Observer {
@@ -30,7 +31,7 @@ class CommitsAdapter(viewModel: RepoDetailsViewModel, fragment: RepoDetailsFragm
         return CommitViewAdapter(inflater.inflate(R.layout.commits_item, parent, false))
     }
 
-    override fun getItemCount(): Int = commits.size
+    override fun getItemCount(): Int = MAX_ITEMS_AMOUNT
 
     override fun onBindViewHolder(holder: CommitViewAdapter, position: Int) {
         commits[position]?.let {

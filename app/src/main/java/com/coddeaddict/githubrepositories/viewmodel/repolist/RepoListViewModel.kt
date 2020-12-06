@@ -1,5 +1,6 @@
 package com.coddeaddict.githubrepositories.viewmodel.repolist
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.coddeaddict.githubrepositories.model.repositoryItems.RepositoryItem
@@ -13,9 +14,10 @@ import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
 class RepoListViewModel (private val githubRepository: GithubRepository): ViewModel() {
+    private val startPageNumber = 1
 
     var isDataLoading: Boolean = false
-    var pageNumber: Int = 0
+    var pageNumber: Int = startPageNumber
     var totalResults: Int = 9999
     var repositoriesLiveData = MutableLiveData<List<RepositoryItem>>(listOf())
     var UIstateLiveData = MutableLiveData<UIState>(UIState.INITIALIZED)
@@ -37,7 +39,7 @@ class RepoListViewModel (private val githubRepository: GithubRepository): ViewMo
                                 val repositoriesList = response.body()?.repositoryItems
                                 updateRepositoriesList(repositoriesList)
                                 UIstateLiveData.postValue(UIState.ON_RESULT)
-                                pageNumber+=1
+                                incrementPageNumberByOne()
                             }
                         }
                     }
@@ -48,7 +50,11 @@ class RepoListViewModel (private val githubRepository: GithubRepository): ViewMo
                     UIstateLiveData.postValue(UIState.ON_ERROR)
                 }
             })
+        Log.d("page", pageNumber.toString())
+    }
 
+    private fun incrementPageNumberByOne(){
+        pageNumber+=1
     }
 
     fun updateRepositoriesList(newRepositoryList: List<RepositoryItem>?) {

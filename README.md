@@ -1,4 +1,4 @@
-# Marvel Movies
+# Github Repositories
 
 ## Description
 - Home Page: Searching for repository name/description. Clicking on the button takes user to detailed screen.

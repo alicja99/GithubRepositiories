@@ -11,14 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_begin="@dimen/details_layout_margin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="20dp" />
+        app:layout_constraintGuide_end="@dimen/details_layout_margin" />
 
     <ImageView
         android:id="@+id/repository_image_details"
@@ -47,7 +47,7 @@
         style="@style/descriptionSmallStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="@dimen/margin_xxsmall"
         android:text="@string/repo_by"
         app:layout_constraintBottom_toTopOf="@+id/repository_author_name"
         app:layout_constraintStart_toStartOf="@+id/guideline_start" />
@@ -56,7 +56,7 @@
         android:id="@+id/star_icon_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="@dimen/margin_large"
         android:contentDescription="@string/starIcon"
         android:src="@drawable/star_icon"
         app:layout_constraintBottom_toTopOf="@+id/guideline_image"
@@ -67,7 +67,7 @@
         style="@style/headerWhiteStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="@dimen/margin_xsmall"
         app:layout_constraintBottom_toTopOf="@+id/repository_stars_details"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         tools:text="Repo Author Name" />
@@ -77,8 +77,8 @@
         style="@style/descriptionXSmallStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginStart="@dimen/margin_xsmall"
+        android:layout_marginBottom="@dimen/star_details_margin"
         android:text="@string/number_of_stars"
         android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="@+id/repository_image_details"
@@ -118,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:textSize="17sp"
+        android:textSize="@dimen/repo_title_text_size"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toTopOf="@+id/guideline_image"
         tools:text="Repo Title" />
@@ -126,8 +126,8 @@
     <Button
         android:id="@+id/view_online_button"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/view_online_button_height"
+        android:layout_marginTop="@dimen/details_layout_margin"
         android:background="@drawable/big_rounded_box"
         android:text="@string/view_online"
         android:textColor="@color/colorAccent"
@@ -139,7 +139,7 @@
         style="@style/smallHeaderStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/history_layout_margin"
         android:text="@string/commits_history"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/repo_title" />
@@ -148,8 +148,8 @@
         android:id="@+id/commits_recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="@dimen/space_10"
+        android:layout_marginBottom="@dimen/margin_large"
         android:scrollbars="none"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -162,8 +162,8 @@
     <LinearLayout
         android:id="@+id/share_repo_button"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="44dp"
+        android:layout_height="@dimen/share_repo_button_height"
+        android:layout_marginBottom="@dimen/share_repo_button_margin"
         android:background="@drawable/big_rounded_box"
         android:clickable="true"
         android:focusable="true"
@@ -179,7 +179,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="5dp"
+            android:layout_margin="@dimen/margin_small"
             android:contentDescription="@string/share_image"
             android:src="@drawable/share_icon" />
 
@@ -189,7 +189,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/margin_small"
             android:text="@string/share_repo"
             android:textColor="@color/colorAccent" />
     </LinearLayout>
@@ -200,12 +200,12 @@
         style="@style/commitAuthorStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="@dimen/result_textview_margin"
         android:gravity="center_horizontal"
         android:text="@string/no_results"
         android:textAlignment="center"
         android:visibility="gone"
-        android:textSize="32sp"
+        android:textSize="@dimen/text_large"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
@@ -217,7 +217,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="@dimen/result_margin"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"

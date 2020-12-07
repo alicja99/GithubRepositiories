@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="header_size">34dp</dimen>
-    <dimen name="margin_xsmall">4dp</dimen>
+
+    <dimen name="margin_extra_small">2dp</dimen>
+    <dimen name="margin_xxsmall">4dp</dimen>
+    <dimen name="margin_xsmall">6dp</dimen>
     <dimen name="margin_small">8dp</dimen>
+    <dimen name="space_10">10dp</dimen>
     <dimen name="margin_smedium">12dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_slarge">18dp</dimen>
     <dimen name="margin_large">24dp</dimen>
+
+    <dimen name="text_medium">18sp</dimen>
+    <dimen name="text_large">32sp</dimen>
+    <dimen name="header_size">34dp</dimen>
+    <dimen name="repo_title_text_size">17sp</dimen>
+
     <dimen name="footer_spinner_height">36dp</dimen>
+    <dimen name="image_card_dimen">60dp</dimen>
+    <dimen name="card_elevation">10dp</dimen>
+    <dimen name="card_corner_radius">10dp</dimen>
+    <dimen name="margin_top_screen">45dp</dimen>
+    <dimen name="big_text">24sp</dimen>
+    <dimen name="result_margin">88dp</dimen>
+    <dimen name="margin_xlarge">30dp</dimen>
+    <dimen name="details_layout_margin">20dp</dimen>
+    <dimen name="star_details_margin">22dp</dimen>
+    <dimen name="history_layout_margin">40dp</dimen>
+    <dimen name="result_textview_margin">80dp</dimen>
+    <dimen name="share_repo_button_height">50dp</dimen>
+    <dimen name="view_online_button_height">30dp</dimen>
+    <dimen name="share_repo_button_margin">44dp</dimen>
+    <dimen name="repository_image_dimen">36dp</dimen>
+    <dimen name="commit_index_dimen">80dp</dimen>
+
 </resources>

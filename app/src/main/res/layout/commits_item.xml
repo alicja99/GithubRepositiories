@@ -12,13 +12,12 @@
         android:id="@+id/repository_image_container"
         android:layout_width="@dimen/repository_image_dimen"
         android:layout_height="@dimen/repository_image_dimen"
+        android:layout_marginTop="@dimen/margin_medium"
         android:background="@drawable/circle"
         android:elevation="@dimen/card_elevation"
         app:cardCornerRadius="@dimen/repository_image_dimen"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <TextView
             android:id="@+id/commit_index"

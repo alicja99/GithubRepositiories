@@ -1,6 +1,5 @@
 package com.coddeaddict.githubrepositories.model.repositoryItems
 
-import com.coddeaddict.githubrepositories.model.repositoryItems.RepositoryItem
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 

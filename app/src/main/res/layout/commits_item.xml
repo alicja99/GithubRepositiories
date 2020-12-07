@@ -5,32 +5,30 @@
     android:id="@+id/repo_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/margin_medium"
     android:background="@drawable/white_rounded_box"
     android:padding="@dimen/margin_small">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/repository_image_container"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="@dimen/repository_image_dimen"
+        android:layout_height="@dimen/repository_image_dimen"
+        android:layout_marginTop="@dimen/margin_medium"
         android:background="@drawable/circle"
-        android:elevation="10dp"
-        app:cardCornerRadius="36dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="@dimen/card_elevation"
+        app:cardCornerRadius="@dimen/repository_image_dimen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <TextView
             android:id="@+id/commit_index"
             style="@style/numberStyle"
-            android:layout_width="80dp"
-            android:layout_height="82dp"
+            android:layout_width="@dimen/commit_index_dimen"
+            android:layout_height="@dimen/commit_index_dimen"
             android:layout_gravity="center"
             android:gravity="center"
             android:shadowColor="@android:color/white"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_medium"
             tools:text="1" />
 
     </androidx.cardview.widget.CardView>
@@ -41,8 +39,8 @@
         style="@style/commitAuthorStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/space_10"
         android:textAlignment="viewStart"
         app:layout_constraintStart_toEndOf="@+id/repository_image_container"
         app:layout_constraintTop_toTopOf="parent"
@@ -54,8 +52,8 @@
         style="@style/descriptionStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_extra_small"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/repository_image_container"
@@ -67,8 +65,8 @@
         style="@style/descriptionStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_extra_small"
         android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

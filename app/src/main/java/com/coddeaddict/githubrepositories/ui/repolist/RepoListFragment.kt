@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,14 +31,7 @@ class RepoListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        setUpSearchView()
-        setUpRecyclerView()
-        setUpAdapter()
-        observeLiveData()
-    }
-
-    override fun onPause() {
-        super.onPause()
+       initializeFragment()
     }
 
     override fun onCreateView(
@@ -48,6 +40,13 @@ class RepoListFragment : Fragment() {
     ): View {
         binding = FragmentRepoListBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    private fun initializeFragment(){
+        setUpSearchView()
+        setUpRecyclerView()
+        setUpAdapter()
+        observeLiveData()
     }
 
     private fun setUpRecyclerView() {
@@ -94,13 +93,11 @@ class RepoListFragment : Fragment() {
                     viewModel.onSearchQueryChanged(it)
                 }
             }
-
     }
 
     private fun observeLiveData() {
-        viewModel.UIstateLiveData.observe(viewLifecycleOwner, Observer { state ->
+        viewModel.UIstateLiveData.observe(viewLifecycleOwner, { state ->
             when (state) {
-
                 UIState.LOADING -> {
                     showProgressBar()
                 }
@@ -116,9 +113,8 @@ class RepoListFragment : Fragment() {
                 UIState.INITIALIZED -> {
                     showSearchRepositoriesTextLabel()
                 }
-
                 else -> {
-
+                    showOnError()
                 }
             }
         })
@@ -144,6 +140,7 @@ class RepoListFragment : Fragment() {
     private fun showEmptyResults() {
         binding.repositoriesRecyclerview.visibility = View.GONE
         binding.resultsTextView.visibility = View.VISIBLE
+        binding.resultsTextView.text = resources.getString(R.string.no_results)
         binding.progressBar.visibility = View.GONE
     }
 
@@ -166,7 +163,7 @@ class RepoListFragment : Fragment() {
         binding.progressBar.visibility = View.GONE
     }
 
-    private fun showSearchRepositoriesTextLabel(){
+    private fun showSearchRepositoriesTextLabel() {
         binding.repositoriesRecyclerview.visibility = View.GONE
         binding.resultsTextView.text = resources.getString(R.string.query_repositories)
         binding.resultsTextView.visibility = View.VISIBLE

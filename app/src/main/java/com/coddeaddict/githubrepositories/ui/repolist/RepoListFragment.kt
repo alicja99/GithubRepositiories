@@ -31,10 +31,7 @@ class RepoListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        setUpSearchView()
-        setUpRecyclerView()
-        setUpAdapter()
-        observeLiveData()
+       initializeFragment()
     }
 
     override fun onCreateView(
@@ -43,6 +40,13 @@ class RepoListFragment : Fragment() {
     ): View {
         binding = FragmentRepoListBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    private fun initializeFragment(){
+        setUpSearchView()
+        setUpRecyclerView()
+        setUpAdapter()
+        observeLiveData()
     }
 
     private fun setUpRecyclerView() {
@@ -89,13 +93,11 @@ class RepoListFragment : Fragment() {
                     viewModel.onSearchQueryChanged(it)
                 }
             }
-
     }
 
     private fun observeLiveData() {
         viewModel.UIstateLiveData.observe(viewLifecycleOwner, { state ->
             when (state) {
-
                 UIState.LOADING -> {
                     showProgressBar()
                 }
@@ -111,7 +113,6 @@ class RepoListFragment : Fragment() {
                 UIState.INITIALIZED -> {
                     showSearchRepositoriesTextLabel()
                 }
-
                 else -> {
                     showOnError()
                 }

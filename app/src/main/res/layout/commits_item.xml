@@ -5,7 +5,6 @@
     android:id="@+id/repo_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/margin_medium"
     android:background="@drawable/white_rounded_box"
     android:padding="@dimen/margin_small">
 

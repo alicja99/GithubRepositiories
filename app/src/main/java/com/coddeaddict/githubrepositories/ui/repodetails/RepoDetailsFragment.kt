@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.coddeaddict.githubrepositories.R
@@ -38,6 +40,10 @@ class RepoDetailsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         repositoryItem = arguments?.getSerializable(REPOSITORY_ITEM_KEY) as RepositoryItem
         setDataIntoFields(repositoryItem)
+        initializeFragment()
+    }
+
+    private fun initializeFragment() {
         setUpRecyclerView()
         setUpAdapter()
         observeLiveData()
@@ -59,7 +65,6 @@ class RepoDetailsFragment : Fragment() {
     }
 
     private fun viewOnlineButtonOnClick(repositoryUrl: String) {
-
         binding.viewOnlineButton.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(repositoryUrl)))
         }
@@ -81,7 +86,6 @@ class RepoDetailsFragment : Fragment() {
         binding.shareRepoButton.setOnClickListener {
             startActivity(Intent.createChooser(intent, "Share Repo"))
         }
-
     }
 
     override fun onCreateView(
@@ -139,11 +143,27 @@ class RepoDetailsFragment : Fragment() {
             adapter = CommitsAdapter(viewModel, this)
             binding.commitsRecyclerview.adapter = adapter
         }
+        setUpRecyclerViewDivider()
+    }
+
+    private fun setUpRecyclerViewDivider() {
+        val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        context?.let {
+            ContextCompat.getDrawable(
+                it,
+                R.drawable.recycler_view_divider
+            )
+        }?.let { itemDecorator.setDrawable(it) }
+
+        binding.commitsRecyclerview.addItemDecoration(
+            itemDecorator
+        )
     }
 
     private fun showEmptyResults() {
         binding.commitsRecyclerview.visibility = View.GONE
         binding.resultsTextView.visibility = View.VISIBLE
+        binding.resultsTextView.text = resources.getString(R.string.no_results)
         binding.progressbarDetails.visibility = View.GONE
     }
 
@@ -156,10 +176,9 @@ class RepoDetailsFragment : Fragment() {
     private fun showOnError() {
         binding.commitsRecyclerview.visibility = View.GONE
         binding.resultsTextView.visibility = View.VISIBLE
-        binding.resultsTextView.text = R.string.error.toString()
+        binding.resultsTextView.text = resources.getString(R.string.error)
         binding.progressbarDetails.visibility = View.GONE
     }
-
 
     private fun hideProgressBar() {
         binding.commitsRecyclerview.visibility = View.VISIBLE

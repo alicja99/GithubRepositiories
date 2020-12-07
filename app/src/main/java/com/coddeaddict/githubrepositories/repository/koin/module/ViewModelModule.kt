@@ -7,14 +7,15 @@ import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
 
 @OptIn(KoinApiExtension::class)
-val repoListViewModelModule = module{
-    viewModel{
+val repoListViewModelModule = module {
+    viewModel {
         RepoListViewModel(get())
     }
 }
+
 @OptIn(KoinApiExtension::class)
-val repoDetailsViewModelModule = module{
-    viewModel{
+val repoDetailsViewModelModule = module {
+    viewModel {
         RepoDetailsViewModel(get())
     }
 }

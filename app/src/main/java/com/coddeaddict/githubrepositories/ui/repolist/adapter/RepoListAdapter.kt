@@ -24,7 +24,7 @@ class RepoListAdapter(viewModel: RepoListViewModel, fragment: Fragment) :
 
 
     init {
-        viewModel.repositoriesLiveData.observe(fragment.viewLifecycleOwner, Observer {
+        viewModel.repositoriesLiveData.observe(fragment.viewLifecycleOwner, {
             viewModel.isDataLoading = false
             hideFooterProgressBar()
             repositories.clear()

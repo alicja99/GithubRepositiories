@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -85,10 +84,6 @@ class RepoDetailsFragment : Fragment() {
 
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -113,9 +108,8 @@ class RepoDetailsFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        viewModel.UICommitsLiveData.observe(viewLifecycleOwner, Observer { state ->
+        viewModel.UICommitsLiveData.observe(viewLifecycleOwner, { state ->
             when (state) {
-
                 UICommitsState.NO_COMMITS -> {
                     showEmptyResults()
                 }
@@ -128,14 +122,12 @@ class RepoDetailsFragment : Fragment() {
                 UICommitsState.LOADING -> {
                     showProgressBar()
                 }
-
                 else -> {
-
+                    showOnError()
                 }
             }
         })
     }
-
 
     private fun setUpRecyclerView() {
         linearLayoutManager = LinearLayoutManager(activity)

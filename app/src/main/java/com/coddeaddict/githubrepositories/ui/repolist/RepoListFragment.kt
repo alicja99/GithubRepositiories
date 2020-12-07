@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,10 +35,6 @@ class RepoListFragment : Fragment() {
         setUpRecyclerView()
         setUpAdapter()
         observeLiveData()
-    }
-
-    override fun onPause() {
-        super.onPause()
     }
 
     override fun onCreateView(
@@ -98,7 +93,7 @@ class RepoListFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        viewModel.UIstateLiveData.observe(viewLifecycleOwner, Observer { state ->
+        viewModel.UIstateLiveData.observe(viewLifecycleOwner, { state ->
             when (state) {
 
                 UIState.LOADING -> {
@@ -118,7 +113,7 @@ class RepoListFragment : Fragment() {
                 }
 
                 else -> {
-
+                    showOnError()
                 }
             }
         })
@@ -166,7 +161,7 @@ class RepoListFragment : Fragment() {
         binding.progressBar.visibility = View.GONE
     }
 
-    private fun showSearchRepositoriesTextLabel(){
+    private fun showSearchRepositoriesTextLabel() {
         binding.repositoriesRecyclerview.visibility = View.GONE
         binding.resultsTextView.text = resources.getString(R.string.query_repositories)
         binding.resultsTextView.visibility = View.VISIBLE

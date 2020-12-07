@@ -1,6 +1,5 @@
 package com.coddeaddict.githubrepositories.viewmodel.repolist
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.coddeaddict.githubrepositories.model.repositoryItems.RepositoryItem
@@ -20,7 +19,7 @@ class RepoListViewModel(private val githubRepository: GithubRepository) : ViewMo
     var pageNumber: Int = startPageNumber
     var totalResults: Int = 9999
     var repositoriesLiveData = MutableLiveData<List<RepositoryItem>>(listOf())
-    var UIstateLiveData = MutableLiveData<UIState>(UIState.INITIALIZED)
+    var UIstateLiveData = MutableLiveData(UIState.INITIALIZED)
 
 
     fun getRepositories(query: String, currentPageNumber: Int) {
@@ -50,7 +49,6 @@ class RepoListViewModel(private val githubRepository: GithubRepository) : ViewMo
                     UIstateLiveData.postValue(UIState.ON_ERROR)
                 }
             })
-        Log.d("page", pageNumber.toString())
     }
 
     private fun incrementPageNumberByOne() {

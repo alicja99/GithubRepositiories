@@ -14,7 +14,7 @@
     <string name="share_repo">Share Repo</string>
     <string name="share_image">Share Image</string>
     <string name="error">Some Error Occurred</string>
-    <string name="no_results">No results</string>
-    <string name="number_of_stars">Number of stars (%1$d)</string>
+    <string name="no_results">No Results</string>
+    <string name="number_of_stars">Number of Stars (%1$d)</string>
     <string name="query_repositories">Input Query!</string>
 </resources>

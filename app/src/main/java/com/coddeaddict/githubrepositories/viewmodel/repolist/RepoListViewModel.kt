@@ -32,7 +32,7 @@ class RepoListViewModel(private val githubRepository: GithubRepository) : ViewMo
                     if (response.isSuccessful) {
                         totalResults = response.body()!!.total_count
                         response.body()?.repositoryItems?.let {
-                            if (it.isEmpty() && currentPageNumber == 0) {
+                            if (it.isEmpty()) {
                                 UIstateLiveData.postValue(UIState.ON_EMPTY_RESULTS)
                             } else {
                                 val repositoriesList = response.body()?.repositoryItems

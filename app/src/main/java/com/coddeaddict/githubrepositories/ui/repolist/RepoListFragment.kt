@@ -139,6 +139,7 @@ class RepoListFragment : Fragment() {
     private fun showEmptyResults() {
         binding.repositoriesRecyclerview.visibility = View.GONE
         binding.resultsTextView.visibility = View.VISIBLE
+        binding.resultsTextView.text = resources.getString(R.string.no_results)
         binding.progressBar.visibility = View.GONE
     }
 

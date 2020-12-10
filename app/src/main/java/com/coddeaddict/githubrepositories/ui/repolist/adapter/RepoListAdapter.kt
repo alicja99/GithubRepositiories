@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.coddeaddict.githubrepositories.R
@@ -28,8 +27,10 @@ class RepoListAdapter(viewModel: RepoListViewModel, fragment: Fragment) :
             viewModel.isDataLoading = false
             hideFooterProgressBar()
             repositories.clear()
-            repositories.addAll(it)
-            notifyDataSetChanged()
+            it?.let {
+                repositories.addAll(it)
+                notifyDataSetChanged()
+            }
         })
 
     }
@@ -73,7 +74,7 @@ class RepoListAdapter(viewModel: RepoListViewModel, fragment: Fragment) :
         fun bindData(item: RepositoryItem) {
             with(itemView) {
                 Glide.with(context)
-                    .load(item.owner.avatar_url)
+                    .load(item.owner.avatarUrl)
                     .into(author_image)
                 commit_author_name.text = item.name
                 commit_author_email.text = item.stargazers_count.toString()

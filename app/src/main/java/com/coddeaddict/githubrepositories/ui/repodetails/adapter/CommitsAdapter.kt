@@ -3,7 +3,6 @@ package com.coddeaddict.githubrepositories.ui.repodetails.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.coddeaddict.githubrepositories.R
 import com.coddeaddict.githubrepositories.model.commits.CommitsItem
@@ -30,9 +29,16 @@ class CommitsAdapter(viewModel: RepoDetailsViewModel, fragment: RepoDetailsFragm
         return CommitViewAdapter(inflater.inflate(R.layout.commits_item, parent, false))
     }
 
-    override fun getItemCount(): Int = maxItemAmount
+    override fun getItemCount(): Int {
+        return if (commits.size > maxItemAmount) {
+            maxItemAmount
+        } else {
+            commits.size
+        }
+    }
 
     override fun onBindViewHolder(holder: CommitViewAdapter, position: Int) {
+
         commits[position]?.let {
             holder.bindData(it)
             val indexNumber = position + 1

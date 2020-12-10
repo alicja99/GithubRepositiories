@@ -31,7 +31,7 @@ class RepoListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-       initializeFragment()
+        initializeFragment()
     }
 
     override fun onCreateView(
@@ -42,7 +42,7 @@ class RepoListFragment : Fragment() {
         return binding.root
     }
 
-    private fun initializeFragment(){
+    private fun initializeFragment() {
         setUpSearchView()
         setUpRecyclerView()
         setUpAdapter()
@@ -96,13 +96,14 @@ class RepoListFragment : Fragment() {
     }
 
     private fun observeLiveData() {
+        viewModel.apiError.observe(viewLifecycleOwner, {
+            showOnError(it)
+        })
+
         viewModel.UIstateLiveData.observe(viewLifecycleOwner, { state ->
             when (state) {
                 UIState.LOADING -> {
                     showProgressBar()
-                }
-                UIState.ON_ERROR -> {
-                    showOnError()
                 }
                 UIState.ON_RESULT -> {
                     hideProgressBar()
@@ -136,7 +137,6 @@ class RepoListFragment : Fragment() {
         }
     }
 
-
     private fun showEmptyResults() {
         binding.repositoriesRecyclerview.visibility = View.GONE
         binding.resultsTextView.visibility = View.VISIBLE
@@ -150,10 +150,15 @@ class RepoListFragment : Fragment() {
         binding.progressBar.visibility = View.VISIBLE
     }
 
-    private fun showOnError() {
+    private fun showOnError(message: String? = null) {
+        if (!message.isNullOrEmpty()) {
+            binding.resultsTextView.text = message
+        } else {
+            binding.resultsTextView.text = resources.getString(R.string.check_internet_connection)
+        }
+
         binding.repositoriesRecyclerview.visibility = View.GONE
         binding.resultsTextView.visibility = View.VISIBLE
-        binding.resultsTextView.text = resources.getString(R.string.error)
         binding.progressBar.visibility = View.GONE
     }
 

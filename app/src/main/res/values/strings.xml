@@ -17,4 +17,6 @@
     <string name="no_results">No Results</string>
     <string name="number_of_stars">Number of Stars (%1$d)</string>
     <string name="query_repositories">Input Query!</string>
+    <string name="check_internet_connection">Check Internet Connection!</string>
+    <string name="empty_repository">Repository is empty</string>
 </resources>

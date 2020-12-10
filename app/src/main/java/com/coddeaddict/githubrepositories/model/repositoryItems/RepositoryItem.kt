@@ -10,12 +10,14 @@ data class RepositoryItem(
     val owner: Owner,
     val stargazers_count: Int,
     val url: String,
+    val size: Int,
 ) : Serializable {
     constructor() : this(
         "",
         "",0,"",
         Owner("", 0, "", ""),
         0,
-        ""
+        "",
+        0
     )
 }

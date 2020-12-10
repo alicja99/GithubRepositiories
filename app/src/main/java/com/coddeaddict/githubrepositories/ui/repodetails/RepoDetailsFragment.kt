@@ -52,7 +52,6 @@ class RepoDetailsFragment : Fragment() {
     }
 
     private fun fetchCommits() {
-        viewModel.UICommitsLiveData.postValue(UICommitsState.LOADING)
         viewModel.getCommits(repositoryItem.owner.login, repositoryItem.name)
     }
 
@@ -107,24 +106,28 @@ class RepoDetailsFragment : Fragment() {
         binding.repositoryStarsDetails.text = starsString
         binding.repoTitle.text = repositoryItem.name
         Glide.with(this)
-            .load(repositoryItem.owner.avatar_url)
+            .load(repositoryItem.owner.avatarUrl)
             .into(binding.repositoryImageDetails)
     }
 
     private fun observeLiveData() {
+        viewModel.apiError.observe(viewLifecycleOwner, {
+            showOnError(it)
+        })
+
         viewModel.UICommitsLiveData.observe(viewLifecycleOwner, { state ->
             when (state) {
                 UICommitsState.NO_COMMITS -> {
                     showEmptyResults()
-                }
-                UICommitsState.ON_ERROR -> {
-                    showOnError()
                 }
                 UICommitsState.ON_RESULT -> {
                     hideProgressBar()
                 }
                 UICommitsState.LOADING -> {
                     showProgressBar()
+                }
+                UICommitsState.EMPTY_REPOSITORY->{
+                    showOnError(resources.getString(R.string.empty_repository))
                 }
                 else -> {
                     showOnError()
@@ -173,10 +176,15 @@ class RepoDetailsFragment : Fragment() {
         binding.progressbarDetails.visibility = View.VISIBLE
     }
 
-    private fun showOnError() {
+    private fun showOnError(message: String? = null) {
+        if (!message.isNullOrEmpty()) {
+            binding.resultsTextView.text = message
+        } else {
+            binding.resultsTextView.text = resources.getString(R.string.check_internet_connection)
+        }
+
         binding.commitsRecyclerview.visibility = View.GONE
         binding.resultsTextView.visibility = View.VISIBLE
-        binding.resultsTextView.text = resources.getString(R.string.error)
         binding.progressbarDetails.visibility = View.GONE
     }
 

@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface GithubService {
+interface GithubAPI {
     @GET("search/repositories?sort=stars&order=desc")
     fun getAllRepositories(
         @Query("q") query: String,

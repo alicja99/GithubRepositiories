@@ -11,7 +11,7 @@ import retrofit2.Call
 class GithubRepository : KoinComponent {
     private val request =
         ServiceBuilder.buildService(
-            GithubService::class.java
+            GithubAPI::class.java
         )
 
     fun getAllRepositories(query: String, pageNumber: Int): Call<Result> {

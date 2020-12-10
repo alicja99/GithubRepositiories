@@ -1,3 +1,4 @@
+import com.coddeaddict.githubrepositories.repository.api.NetworkConnectionInterceptor
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -11,9 +12,9 @@ val retrofitModule = module {
         return GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create()
     }
 
-    fun provideHttpClient(): OkHttpClient {
+    fun provideHttpClient(networkConnectionInterceptor: NetworkConnectionInterceptor): OkHttpClient {
         val okHttpClientBuilder = OkHttpClient.Builder()
-
+            .addInterceptor(networkConnectionInterceptor)
         return okHttpClientBuilder.build()
     }
 
@@ -25,7 +26,7 @@ val retrofitModule = module {
             .build()
     }
 
-    single { provideHttpClient() }
+    single { provideHttpClient(get()) }
     single { provideGson() }
     single { provideRetrofit(get(), get()) }
 

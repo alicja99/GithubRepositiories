@@ -3,6 +3,7 @@ package com.coddeaddict.githubrepositories.ui.repodetails.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.coddeaddict.githubrepositories.R
 import com.coddeaddict.githubrepositories.model.commits.CommitsItem
@@ -18,10 +19,10 @@ class CommitsAdapter(viewModel: RepoDetailsViewModel, fragment: RepoDetailsFragm
     private val maxItemAmount = 3
 
     init {
-        viewModel.commitsLiveData.observe(fragment.viewLifecycleOwner, {
+        viewModel.commitsLiveData.observe(fragment.viewLifecycleOwner) {
             commits.addAll(it)
             notifyDataSetChanged()
-        })
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommitViewAdapter {

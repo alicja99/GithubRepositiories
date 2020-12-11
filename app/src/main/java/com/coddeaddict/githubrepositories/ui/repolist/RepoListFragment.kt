@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.coddeaddict.githubrepositories.ui.repodetails.RepoDetailsFragment.Com
 import com.coddeaddict.githubrepositories.ui.repolist.adapter.RepoListAdapter
 import com.coddeaddict.githubrepositories.viewmodel.repolist.RepoListViewModel
 import com.jakewharton.rxbinding2.widget.queryTextChanges
+import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
 import java.util.concurrent.TimeUnit
@@ -66,10 +68,13 @@ class RepoListFragment : Fragment() {
 
                         if (it.checkIfThereIsScrollingPossible(totalItemCount)) {
                             adapter?.showFooterProgressBar()
-                            it.getRepositories(
-                                binding.searchview.query.toString(),
-                                viewModel.pageNumber,
-                            )
+                            runBlocking {
+                                it.getRepositories(
+                                    binding.searchview.query.toString(),
+                                    viewModel.pageNumber,
+                                )
+                            }
+
                         }
                     }
                 }
@@ -90,17 +95,20 @@ class RepoListFragment : Fragment() {
             .debounce(800, TimeUnit.MILLISECONDS)
             .subscribe {
                 if (binding.searchview.hasFocus()) {
-                    viewModel.onSearchQueryChanged(it)
+                    runBlocking {
+                        viewModel.onSearchQueryChanged(it)
+                    }
+
                 }
             }
     }
 
     private fun observeLiveData() {
-        viewModel.apiError.observe(viewLifecycleOwner, {
+        viewModel.apiError.observe(viewLifecycleOwner) {
             showOnError(it)
-        })
+        }
 
-        viewModel.UIstateLiveData.observe(viewLifecycleOwner, { state ->
+        viewModel.UIstateLiveData.observe(viewLifecycleOwner) { state ->
             when (state) {
                 UIState.LOADING -> {
                     showProgressBar()
@@ -118,7 +126,7 @@ class RepoListFragment : Fragment() {
                     showOnError()
                 }
             }
-        })
+        }
     }
 
     private fun setUpAdapter() {

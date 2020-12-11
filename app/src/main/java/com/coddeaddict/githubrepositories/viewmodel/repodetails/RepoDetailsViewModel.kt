@@ -2,11 +2,13 @@ package com.coddeaddict.githubrepositories.viewmodel.repodetails
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.coddeaddict.githubrepositories.model.commits.CommitsItem
 import com.coddeaddict.githubrepositories.model.commits.CommitsResult
 import com.coddeaddict.githubrepositories.repository.api.repositories.GithubRepository
 import com.coddeaddict.githubrepositories.state.UICommitsState
 import com.coddeaddict.githubrepositories.util.NoInternetException
+import kotlinx.coroutines.launch
 import org.koin.core.component.KoinApiExtension
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,28 +25,30 @@ class RepoDetailsViewModel(private val githubRepository: GithubRepository) : Vie
     fun getCommits(owner: String, repositoryName: String) {
         UICommitsLiveData.postValue(UICommitsState.LOADING)
 
-        try {
-            githubRepository.getCommits(owner, repositoryName)
-                .enqueue(object : Callback<CommitsResult> {
-                    override fun onResponse(
-                        call: Call<CommitsResult>,
-                        response: Response<CommitsResult>
-                    ) {
-                        if (response.isSuccessful) {
-                            onResponseSuccess(response)
+        viewModelScope.launch {
+            try {
+                githubRepository.getCommits(owner, repositoryName)
+                    .enqueue(object : Callback<CommitsResult> {
+                        override fun onResponse(
+                            call: Call<CommitsResult>,
+                            response: Response<CommitsResult>
+                        ) {
+                            if (response.isSuccessful) {
+                                onResponseSuccess(response)
 
-                        } else {
-                            onResponseErrorHTTPCode(response.code())
+                            } else {
+                                onResponseErrorHTTPCode(response.code())
+                            }
                         }
-                    }
 
-                    override fun onFailure(call: Call<CommitsResult>, t: Throwable) {
-                        onResponseFailure(t)
-                    }
-                })
+                        override fun onFailure(call: Call<CommitsResult>, t: Throwable) {
+                            onResponseFailure(t)
+                        }
+                    })
 
-        } catch (exception: NoInternetException) {
-            apiError.postValue(exception.message)
+            } catch (exception: NoInternetException) {
+                apiError.postValue(exception.message)
+            }
         }
     }
 

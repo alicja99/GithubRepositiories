@@ -2,11 +2,13 @@ package com.coddeaddict.githubrepositories.viewmodel.repolist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.coddeaddict.githubrepositories.model.repositoryItems.RepositoryItem
 import com.coddeaddict.githubrepositories.model.repositoryItems.Result
 import com.coddeaddict.githubrepositories.repository.api.repositories.GithubRepository
 import com.coddeaddict.githubrepositories.state.UIState
 import com.coddeaddict.githubrepositories.util.NoInternetException
+import kotlinx.coroutines.launch
 import org.koin.core.component.KoinApiExtension
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,27 +26,28 @@ class RepoListViewModel(private val githubRepository: GithubRepository) : ViewMo
     var UIstateLiveData = MutableLiveData(UIState.INITIALIZED)
     var apiError = MutableLiveData<String>()
 
-    fun getRepositories(query: String, currentPageNumber: Int) {
-        try {
-            githubRepository.getAllRepositories(query, currentPageNumber)
-                .enqueue(object : Callback<Result> {
-                    override fun onResponse(
-                        call: Call<Result>,
-                        response: Response<Result>
-                    ) {
-                        if (response.isSuccessful) {
-                            onResponseSuccess(response)
+    suspend fun getRepositories(query: String, currentPageNumber: Int) {
+        viewModelScope.launch {
+            try {
+                githubRepository.getAllRepositories(query, currentPageNumber)
+                    .enqueue(object : Callback<Result> {
+                        override fun onResponse(
+                            call: Call<Result>,
+                            response: Response<Result>
+                        ) {
+                            if (response.isSuccessful) {
+                                onResponseSuccess(response)
+                            }
                         }
-                    }
 
-                    override fun onFailure(call: Call<Result>, t: Throwable) {
-                        onResponseFailure(call, t)
-                    }
-                })
-        } catch (exception: NoInternetException) {
-            apiError.postValue(exception.message)
+                        override fun onFailure(call: Call<Result>, t: Throwable) {
+                            onResponseFailure(call, t)
+                        }
+                    })
+            } catch (exception: NoInternetException) {
+                apiError.postValue(exception.message)
+            }
         }
-
     }
 
     private fun onResponseSuccess(response: Response<Result>) {
@@ -70,7 +73,7 @@ class RepoListViewModel(private val githubRepository: GithubRepository) : ViewMo
         pageNumber += 1
     }
 
-    fun updateRepositoriesList(newRepositoryList: List<RepositoryItem>?) {
+    private fun updateRepositoriesList(newRepositoryList: List<RepositoryItem>?) {
         newRepositoryList?.let { movies ->
             repositoriesLiveData.value?.let { currentMovieList ->
                 val updatedMovieList = ArrayList(currentMovieList)
@@ -84,7 +87,7 @@ class RepoListViewModel(private val githubRepository: GithubRepository) : ViewMo
         return (totalResults - 1 > totalItemCount)
     }
 
-    fun onSearchQueryChanged(query: String) {
+    suspend fun onSearchQueryChanged(query: String) {
         if (query.isEmpty()) {
             UIstateLiveData.postValue(UIState.INITIALIZED)
         } else {

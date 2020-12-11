@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.coddeaddict.githubrepositories.R
@@ -23,7 +24,7 @@ class RepoListAdapter(viewModel: RepoListViewModel, fragment: Fragment) :
 
 
     init {
-        viewModel.repositoriesLiveData.observe(fragment.viewLifecycleOwner, {
+        viewModel.repositoriesLiveData.observe(fragment.viewLifecycleOwner) {
             viewModel.isDataLoading = false
             hideFooterProgressBar()
             repositories.clear()
@@ -31,7 +32,7 @@ class RepoListAdapter(viewModel: RepoListViewModel, fragment: Fragment) :
                 repositories.addAll(it)
                 notifyDataSetChanged()
             }
-        })
+        }
 
     }
 

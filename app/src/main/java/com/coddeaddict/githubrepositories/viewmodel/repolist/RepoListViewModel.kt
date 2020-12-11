@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.coddeaddict.githubrepositories.model.repositoryItems.RepositoryItem
 import com.coddeaddict.githubrepositories.model.repositoryItems.Result
-import com.coddeaddict.githubrepositories.repository.api.call.GithubRepository
+import com.coddeaddict.githubrepositories.repository.api.repositories.GithubRepository
 import com.coddeaddict.githubrepositories.state.UIState
 import com.coddeaddict.githubrepositories.util.NoInternetException
 import org.koin.core.component.KoinApiExtension

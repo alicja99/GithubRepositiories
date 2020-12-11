@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -111,11 +112,11 @@ class RepoDetailsFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        viewModel.apiError.observe(viewLifecycleOwner, {
+        viewModel.apiError.observe(viewLifecycleOwner) {
             showOnError(it)
-        })
+        }
 
-        viewModel.UICommitsLiveData.observe(viewLifecycleOwner, { state ->
+        viewModel.UICommitsLiveData.observe(viewLifecycleOwner) { state ->
             when (state) {
                 UICommitsState.NO_COMMITS -> {
                     showEmptyResults()
@@ -133,7 +134,7 @@ class RepoDetailsFragment : Fragment() {
                     showOnError()
                 }
             }
-        })
+        }
     }
 
     private fun setUpRecyclerView() {

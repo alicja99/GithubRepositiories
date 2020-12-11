@@ -1,4 +1,4 @@
-package com.coddeaddict.githubrepositories.repository.api.call
+package com.coddeaddict.githubrepositories.repository.api.repositories
 
 import com.coddeaddict.githubrepositories.model.commits.CommitsResult
 import com.coddeaddict.githubrepositories.model.repositoryItems.Result

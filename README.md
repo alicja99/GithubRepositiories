@@ -28,3 +28,5 @@ as the message describing this commit. Besides displayes info from first screen.
 
 
 
+Preview of the App
+![C4kG1wRiWY](https://user-images.githubusercontent.com/45905489/101979379-ff21e000-3c5c-11eb-92a2-5af3b41634fc.gif)

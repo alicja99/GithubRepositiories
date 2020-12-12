@@ -11,7 +11,6 @@ as the message describing this commit. Besides displayes info from first screen.
 - Dependency Injection
 - LiveData
 - Android JetPack
-- Data Binding
 - View Binding
 - **Architecture : MVVM**
 
